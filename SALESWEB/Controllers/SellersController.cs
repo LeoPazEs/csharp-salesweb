@@ -41,9 +41,8 @@ namespace SALESWEB.Controllers
         {
             if (!ModelState.IsValid)
             {
-                var departments = await _departmentService.FindAllAsync();
-                SellerFormViewModel viewModel = new SellerFormViewModel { Seller = seller, Departments = departments };
-                return View(viewModel);
+                // Estou re-usando a func create que já existe que não é um HttpPost e retorna o mesmo viewModel
+                return await Create();
             }
 
             await _sellerService.InsertAsync(seller);
